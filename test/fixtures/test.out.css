@@ -1,0 +1,30 @@
+@import "foo";
+@import 'foo';
+@import url('foo');
+@import url(foo);
+@import url("foo", relative);
+
+.foo {
+  background-image: url('foo');
+}
+.whatever {
+  background-image: url("foo");
+}
+.bar {
+  background-image: 'oh noes';
+}
+.bing {
+  background-image: url(foo);
+}
+
+/*
+.bing {
+  background-image: url(../photoB.png);
+}
+*/
+
+/**
+ *  .bing {
+ *    background-image: url(../photoB.png);
+ *  }
+ */
