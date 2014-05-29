@@ -29,16 +29,33 @@ function deps(str, ext, fn) {
 
 /**
  * Parse
+ *
+ * @param {String} str
+ * @param {String} ext
+ * @api public
  */
 
 function parse(str, ext) {
-  return parsers[ext](str);
+  var parser = parsers[ext];
+  
+  return parser
+    ? parser(str)
+    : [];
 }
 
 /**
  * Rewrite
+ *
+ * @param {String} str
+ * @param {String} ext
+ * @param {Function} fn
+ * @api public
  */
 
 function rewrite(str, ext, fn) {
-  return parsers[ext](str, ext, fn);
+  var rewriter = parsers[ext];
+  
+  return rewriter
+    ? rewriter(str, ext, fn)
+    : str;
 }
