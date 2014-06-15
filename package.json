@@ -1,13 +1,15 @@
 {
   "name": "file-deps",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "parse and rewrite the dependencies of a file",
   "main": "index.js",
   "scripts": {
     "test": "make test"
   },
   "keywords": [
-    "dependencies", "parser", "rewriter"
+    "dependencies",
+    "parser",
+    "rewriter"
   ],
   "author": "matthew mueller",
   "license": "MIT",

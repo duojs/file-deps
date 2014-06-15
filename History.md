@@ -1,4 +1,9 @@
 
+0.0.3 / 2014-06-15 
+==================
+
+ * return false or null to remove the statement entirely
+
 0.0.2 / 2014-05-29 
 ==================
 
