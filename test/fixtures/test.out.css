@@ -28,3 +28,10 @@
  *    background-image: url(../photoB.png);
  *  }
  */
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+
+  src: url('foo');
+  src: url('foo') format('embedded-opentype'), url("foo") format('woff'), url('foo') format('truetype'), url('foo') format('svg');
+}

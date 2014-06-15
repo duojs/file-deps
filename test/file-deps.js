@@ -13,6 +13,7 @@ var assert = require('assert');
 var fix = {};
 fix.js = read(__dirname + '/fixtures/test.js', 'utf8');
 fix.css = read(__dirname + '/fixtures/test.css', 'utf8');
+fix.removecss = read(__dirname + '/fixtures/test.remove.css', 'utf8');
 fix.html = read(__dirname + '/fixtures/test.html', 'utf8');
 
 /**
@@ -41,7 +42,7 @@ describe('file-deps', function() {
 
     it('should parse css', function() {
       var deps = dep(fix.css, 'css');
-      var order = ['/foo.css', '../bar.css', '../baz.css', 'crazy.css', '../bing.css', '../photo.png', '../photo.png', '../photoB.png'];
+      var order = ['/foo.css', '../bar.css', '../baz.css', 'crazy.css', '../bing.css', '../photo.png', '../photo.png', '../photoB.png', 'photoC.png', 'photoC.png', '../photoC.png', 'haha.png', 'whatever.jpg'];
       asserts(order, deps)
     });
 
@@ -62,7 +63,7 @@ describe('file-deps', function() {
     })
 
     it('should rewrite css imports and urls', function() {
-      var order = ['/foo.css', '../bar.css', '../baz.css', 'crazy.css', '../bing.css', '../photo.png', '../photo.png', '../photoB.png'];
+      var order = ['/foo.css', '../bar.css', '../baz.css', 'crazy.css', '../bing.css', '../photo.png', '../photo.png', '../photoB.png', 'photoC.png', 'photoC.png', '../photoC.png', 'haha.png', 'whatever.jpg'];
       var str = dep(fix.css, 'css', function(req, ext) {
         assert(req == order.shift());
         assert('css' == ext);
@@ -73,7 +74,7 @@ describe('file-deps', function() {
     })
 
     it('should remove deps if false is returned', function() {
-      var str = dep(fix.css, 'css', function(req, ext) {
+      var str = dep(fix.removecss, 'css', function(req, ext) {
         return false;
       });
 
