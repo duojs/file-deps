@@ -1,0 +1,23 @@
+
+
+.foo {
+}
+.whatever {
+}
+.bar {
+  background-image: 'oh noes';
+}
+.bing {
+}
+
+/*
+.bing {
+  background-image: url(../photoB.png);
+}
+*/
+
+/**
+ *  .bing {
+ *    background-image: url(../photoB.png);
+ *  }
+ */
