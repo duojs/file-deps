@@ -28,3 +28,8 @@ var test = require('cheeriojs/cheerio@0.10.0/index.js')
 
 require('this' || 'that')
 require('this') || require('that')
+
+var obj = {
+  a: require('a'),
+  b: require('b')
+};

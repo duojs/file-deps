@@ -36,7 +36,7 @@ describe('file-deps', function() {
     
     it('should parse js', function() {
       var deps = dep(fix.js, 'js');
-      var order = ['cheerio', 'cheerio.js', '/cheerio', '/cheerio.js', './cheerio', './cheerio.js', './cheerio/cheerio', './cheerio/cheerio.js', 'cheeriojs/cheerio', 'cheeriojs/cheerio/index.js', 'cheeriojs/cheerio@0.10.0', 'cheeriojs/cheerio@0.10.0/index', 'cheeriojs/cheerio@0.10.0/index.js', 'this', 'that'];
+      var order = ['cheerio', 'cheerio.js', '/cheerio', '/cheerio.js', './cheerio', './cheerio.js', './cheerio/cheerio', './cheerio/cheerio.js', 'cheeriojs/cheerio', 'cheeriojs/cheerio/index.js', 'cheeriojs/cheerio@0.10.0', 'cheeriojs/cheerio@0.10.0/index', 'cheeriojs/cheerio@0.10.0/index.js', 'this', 'that', 'a', 'b'];
       asserts(order, deps);
     })
 
@@ -51,7 +51,7 @@ describe('file-deps', function() {
   describe('rewrite', function() {
     
     it('should rewrite js requires', function() {
-      var order = ['cheerio', 'cheerio.js', '/cheerio', '/cheerio.js', './cheerio', './cheerio.js', './cheerio/cheerio', './cheerio/cheerio.js', 'cheeriojs/cheerio', 'cheeriojs/cheerio/index.js', 'cheeriojs/cheerio@0.10.0', 'cheeriojs/cheerio@0.10.0/index', 'cheeriojs/cheerio@0.10.0/index.js', 'this', 'that'];
+      var order = ['cheerio', 'cheerio.js', '/cheerio', '/cheerio.js', './cheerio', './cheerio.js', './cheerio/cheerio', './cheerio/cheerio.js', 'cheeriojs/cheerio', 'cheeriojs/cheerio/index.js', 'cheeriojs/cheerio@0.10.0', 'cheeriojs/cheerio@0.10.0/index', 'cheeriojs/cheerio@0.10.0/index.js', 'this', 'that', 'a', 'b'];
 
       var str = dep(fix.js, 'js', function(req, ext) {
         assert(req == order.shift());
