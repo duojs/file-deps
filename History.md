@@ -1,4 +1,11 @@
 
+0.0.5 / 2014-06-29 
+==================
+
+ * Merge branch 'remove/import'
+ * replace urls() sources, but replace @imports entirely
+ * add test for object literals
+
 0.0.4 / 2014-06-15 
 ==================
 
