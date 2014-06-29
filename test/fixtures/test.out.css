@@ -1,8 +1,8 @@
-@import "foo";
-@import 'foo';
-@import url('foo');
-@import url(foo);
-@import url("foo", relative);
+foo
+foo
+foo
+foo
+foo
 
 .foo {
   background-image: url('foo');
