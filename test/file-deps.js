@@ -73,7 +73,7 @@ describe('file-deps', function() {
       assert(str == out.css);
     })
 
-    it('should remove deps if false is returned', function() {
+    it('css should remove deps if false is returned', function() {
       var str = dep(fix.removecss, 'css', function(req, ext) {
         return false;
       });
