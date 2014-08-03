@@ -1,6 +1,6 @@
 {
   "name": "file-deps",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "parse and rewrite the dependencies of a file",
   "main": "index.js",
   "scripts": {
