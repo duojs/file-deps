@@ -31,9 +31,9 @@ out.html = read(__dirname + '/fixtures/test.out.html', 'utf8');
  */
 
 describe('file-deps', function() {
-  
+
   describe('parse', function() {
-    
+
     it('should parse js', function() {
       var deps = dep(fix.js, 'js');
       var order = ['cheerio', 'cheerio.js', '/cheerio', '/cheerio.js', './cheerio', './cheerio.js', './cheerio/cheerio', './cheerio/cheerio.js', 'cheeriojs/cheerio', 'cheeriojs/cheerio/index.js', 'cheeriojs/cheerio@0.10.0', 'cheeriojs/cheerio@0.10.0/index', 'cheeriojs/cheerio@0.10.0/index.js', 'this', 'that', 'a', 'b'];
@@ -49,7 +49,7 @@ describe('file-deps', function() {
   });
 
   describe('rewrite', function() {
-    
+
     it('should rewrite js requires', function() {
       var order = ['cheerio', 'cheerio.js', '/cheerio', '/cheerio.js', './cheerio', './cheerio.js', './cheerio/cheerio', './cheerio/cheerio.js', 'cheeriojs/cheerio', 'cheeriojs/cheerio/index.js', 'cheeriojs/cheerio@0.10.0', 'cheeriojs/cheerio@0.10.0/index', 'cheeriojs/cheerio@0.10.0/index.js', 'this', 'that', 'a', 'b'];
 
@@ -81,6 +81,29 @@ describe('file-deps', function() {
       assert(str == out.removecss);
     })
 
+    it('should replace @imports', function() {
+      var str = dep('@import "a";', 'css', function(req) {
+        return 'body {}';
+      });
+
+      assert('body {}' == str.trim());
+    })
+
+    it('should replace @imports url(...)', function() {
+      var str = dep('@import url("a");', 'css', function(req) {
+        return 'body {}';
+      })
+
+      assert('body {}' == str.trim());
+    })
+
+    it('should replace inner sources for url(...)', function() {
+      var str = dep('body { background: url("a"); }', 'css', function(req) {
+        return 'b';
+      })
+
+      assert('body { background: url("b"); }' == str);
+    })
   })
 })
 
