@@ -14,6 +14,17 @@ parsers.html = require('./lib/html');
 module.exports = deps;
 
 /**
+ * Allow registering custom types
+ *
+ * @param {String} type
+ * @param {Function} fn
+ */
+
+exports.register = function (type, fn) {
+  parsers[type] = fn;
+};
+
+/**
  * Initialize `deps`
  *
  * @param {String} str
@@ -37,7 +48,7 @@ function deps(str, ext, fn) {
 
 function parse(str, ext) {
   var parser = parsers[ext];
-  
+
   return parser
     ? parser(str)
     : [];
@@ -54,7 +65,7 @@ function parse(str, ext) {
 
 function rewrite(str, ext, fn) {
   var rewriter = parsers[ext];
-  
+
   return rewriter
     ? rewriter(str, ext, fn)
     : str;
