@@ -31,13 +31,18 @@ out.html = read(__dirname + '/fixtures/test.out.html', 'utf8');
  */
 
 describe('file-deps', function() {
-
   describe('parse', function() {
-
     it('should parse js', function() {
       var deps = dep(fix.js, 'js');
       var order = ['cheerio', 'cheerio.js', '/cheerio', '/cheerio.js', './cheerio', './cheerio.js', './cheerio/cheerio', './cheerio/cheerio.js', 'cheeriojs/cheerio', 'cheeriojs/cheerio/index.js', 'cheeriojs/cheerio@0.10.0', 'cheeriojs/cheerio@0.10.0/index', 'cheeriojs/cheerio@0.10.0/index.js', 'this', 'that', 'a', 'b'];
       asserts(order, deps);
+    })
+
+    it('should parse stuff with "//"', function() {
+      var js = '"//" + require("foo")';
+      var deps = dep(js, 'js');
+      assert(1 == deps.length);
+      assert('foo' == deps.pop());
     })
 
     it('should parse css', function() {
@@ -45,11 +50,9 @@ describe('file-deps', function() {
       var order = ['/foo.css', '../bar.css', '../baz.css', 'crazy.css', '../bing.css', '../photo.png', '../photo.png', '../photoB.png', 'photoC.png', 'photoC.png', '../photoC.png', 'haha.png', 'whatever.jpg'];
       asserts(order, deps)
     });
-
   });
 
   describe('rewrite', function() {
-
     it('should rewrite js requires', function() {
       var order = ['cheerio', 'cheerio.js', '/cheerio', '/cheerio.js', './cheerio', './cheerio.js', './cheerio/cheerio', './cheerio/cheerio.js', 'cheeriojs/cheerio', 'cheeriojs/cheerio/index.js', 'cheeriojs/cheerio@0.10.0', 'cheeriojs/cheerio@0.10.0/index', 'cheeriojs/cheerio@0.10.0/index.js', 'this', 'that', 'a', 'b'];
 
@@ -60,6 +63,15 @@ describe('file-deps', function() {
       });
 
       assert(str == out.js);
+    })
+
+    it('should rewrite js requires with "//"', function(){
+      var js = '"//" + require("foo")';
+      var str = dep(js, 'js', function (req, ext) {
+        assert('foo' == req);
+        return 'bar';
+      })
+      assert('"//" + require("bar")' == str)
     })
 
     it('should rewrite css imports and urls', function() {

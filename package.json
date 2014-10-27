@@ -14,10 +14,16 @@
   "author": "matthew mueller",
   "license": "MIT",
   "dependencies": {
+    "detective": "^3.1.0",
+    "escape-regexp": "0.0.1",
     "mini-tokenizer": "~0.1.2"
   },
   "devDependencies": {
     "assert": "~1.1.1",
     "mocha": "~1.19.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matthewmueller/file-deps.git"
   }
 }
