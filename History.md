@@ -1,4 +1,13 @@
 
+0.0.7 / 2014-10-26
+==================
+
+  * adding hook for configuring custom types
+  * package.json: Add "repository" to make npm shut up
+  * Makefile: install dependencies before running unit tests
+  * Add .gitignore
+  * lib/js: Refactor to use detective for finding requires
+
 0.0.6 / 2014-08-03
 ==================
 
