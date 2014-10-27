@@ -45,6 +45,13 @@ describe('file-deps', function() {
       assert('foo' == deps.pop());
     })
 
+    it('should not throw when given invalid js', function(){
+      var js = 'require("foo")'
+             + '\n1=foo*bar+18,000!';
+      var deps = dep(js, 'js');
+      assert(0 == deps.length);
+    })
+
     it('should parse css', function() {
       var deps = dep(fix.css, 'css');
       var order = ['/foo.css', '../bar.css', '../baz.css', 'crazy.css', '../bing.css', '../photo.png', '../photo.png', '../photoB.png', 'photoC.png', 'photoC.png', '../photoC.png', 'haha.png', 'whatever.jpg'];
