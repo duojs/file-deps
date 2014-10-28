@@ -13,6 +13,7 @@ var assert = require('assert');
 var fix = {};
 fix.js = read(__dirname + '/fixtures/test.js', 'utf8');
 fix.css = read(__dirname + '/fixtures/test.css', 'utf8');
+fix.cssFontFixes = read(__dirname + '/fixtures/test-font-fixes.css', 'utf8');
 fix.removecss = read(__dirname + '/fixtures/test.remove.css', 'utf8');
 fix.html = read(__dirname + '/fixtures/test.html', 'utf8');
 
@@ -31,6 +32,8 @@ out.html = read(__dirname + '/fixtures/test.out.html', 'utf8');
  */
 
 describe('file-deps', function() {
+
+
   describe('parse', function() {
     it('should parse js', function() {
       var deps = dep(fix.js, 'js');
@@ -50,7 +53,13 @@ describe('file-deps', function() {
       var order = ['/foo.css', '../bar.css', '../baz.css', 'crazy.css', '../bing.css', '../photo.png', '../photo.png', '../photoB.png', 'photoC.png', 'photoC.png', '../photoC.png', 'haha.png', 'whatever.jpg'];
       asserts(order, deps)
     });
+
+    it('should remove paths differing only in suffixed font-fix hacks', function() {
+      var deps = dep(fix.cssFontFixes,'css')
+      assert(!~deps.indexOf('assets/digital-7_mono_italic-webfont.eot?#iefix'), 'Duplicate filepaths are removed')
+    })
   });
+
 
   describe('rewrite', function() {
     it('should rewrite js requires', function() {
