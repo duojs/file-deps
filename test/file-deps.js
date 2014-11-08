@@ -18,7 +18,7 @@ function fixture(fileName) {
 var fix = {};
 fix.js = fixture('test.js');
 fix.css = fixture('test.css');
-fix.cssFontFixes = fixture('test-font-fixes.css');
+fix.cssFontFixes = fixture('test.remove.fontfixdupes.css');
 fix.removecss = fixture('test.remove.css');
 fix.html = fixture('test.html');
 
