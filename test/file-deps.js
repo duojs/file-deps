@@ -19,7 +19,7 @@ var fix = {};
 fix.js = fixture('test.js');
 fix.css = fixture('test.css');
 fix.cssdupes = fixture('test.dupes.css');
-fix.cssFontFixes = fixture('test.remove.fontfixdupes.css');
+fix.cssdupesFontfix = fixture('test.dupes.fontfix.css');
 fix.removecss = fixture('test.remove.css');
 fix.html = fixture('test.html');
 
@@ -61,13 +61,13 @@ describe('file-deps', function() {
     });
 
     it('should remove duplicate paths', function() {
-      var deps = dep(fix.cssdupes, 'css')
-      assert.deepEqual(deps, ['../z.png'])
+      var deps = dep(fix.cssdupes, 'css');
+      assert.deepEqual(deps, ['../z.png']);
     })
 
     it('should remove paths differing only in a suffixed font-fix hack', function() {
-      var deps = dep(fix.cssFontFixes, 'css')
-      assert(!~deps.indexOf('assets/digital-7_mono_italic-webfont.eot?#iefix'), 'Duplicate filepaths are removed')
+      var deps = dep(fix.cssdupesFontfix, 'css');
+      assert(!~deps.indexOf('assets/digital-7_mono_italic-webfont.eot?#iefix'), 'Duplicate filepaths are removed');
     })
   });
 
