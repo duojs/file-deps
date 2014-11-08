@@ -1,4 +1,11 @@
 
+0.0.8 / 2014-11-08
+==================
+
+  * Fixes #7 - Treat ./<foo.bar> and <foo.bar> as duplicate paths
+  * Update mocha
+  * Remove duplicate filepaths when reading deps
+
 0.0.7 / 2014-10-26
 ==================
 
