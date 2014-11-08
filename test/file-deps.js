@@ -20,6 +20,7 @@ fix.js = fixture('test.js');
 fix.css = fixture('test.css');
 fix.cssdupes = fixture('test.dupes.css');
 fix.cssdupesFontfix = fixture('test.dupes.fontfix.css');
+fix.cssdupesSamedir = fixture('test.dupes.samedir.css');
 fix.removecss = fixture('test.remove.css');
 fix.html = fixture('test.html');
 
@@ -68,6 +69,11 @@ describe('file-deps', function() {
     it('should remove paths differing only in a suffixed font-fix hack', function() {
       var deps = dep(fix.cssdupesFontfix, 'css');
       assert(!~deps.indexOf('assets/digital-7_mono_italic-webfont.eot?#iefix'), 'Duplicate filepaths are removed');
+    })
+
+    it('should remove paths differing only in same-dir prefix ./<foo> vs <foo>', function(){
+      var deps = dep(fix.cssdupesSamedir, 'css')
+      assert.deepEqual(deps, ['z.png'])
     })
   });
 
