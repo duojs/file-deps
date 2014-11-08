@@ -3,29 +3,34 @@
  */
 
 var read = require('fs').readFileSync;
-var dep = require('../');
+var path = require('path');
 var assert = require('assert');
+var dep = require('../');
+
+function fixture(fileName) {
+  return read(path.join(__dirname, 'fixtures', fileName), 'utf8');
+}
 
 /**
- * Fixtures
+ * Inputs
  */
 
 var fix = {};
-fix.js = read(__dirname + '/fixtures/test.js', 'utf8');
-fix.css = read(__dirname + '/fixtures/test.css', 'utf8');
-fix.cssFontFixes = read(__dirname + '/fixtures/test-font-fixes.css', 'utf8');
-fix.removecss = read(__dirname + '/fixtures/test.remove.css', 'utf8');
-fix.html = read(__dirname + '/fixtures/test.html', 'utf8');
+fix.js = fixture('test.js');
+fix.css = fixture('test.css');
+fix.cssFontFixes = fixture('test-font-fixes.css');
+fix.removecss = fixture('test.remove.css');
+fix.html = fixture('test.html');
 
 /**
  * Outputs
  */
 
 var out = {};
-out.js = read(__dirname + '/fixtures/test.out.js', 'utf8');
-out.css = read(__dirname + '/fixtures/test.out.css', 'utf8');
-out.removecss = read(__dirname + '/fixtures/test.remove.out.css', 'utf8');
-out.html = read(__dirname + '/fixtures/test.out.html', 'utf8');
+out.js = fixture('test.out.js');
+out.css = fixture('test.out.css');
+out.removecss = fixture('test.remove.out.css');
+out.html = fixture('test.out.html');
 
 /**
  * Tests
