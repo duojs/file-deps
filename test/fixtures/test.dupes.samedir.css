@@ -1,0 +1,2 @@
+.a { background-image: url('z.png'); }
+.b { background-image: url("./z.png"); }
