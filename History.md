@@ -1,4 +1,9 @@
 
+0.0.11 / 2015-11-30
+==================
+
+  * don't change the asset paths but test for uniqueness
+
 0.0.10 / 2015-11-30
 ==================
 
