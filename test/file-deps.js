@@ -57,7 +57,7 @@ describe('file-deps', function() {
 
     it('should parse css', function() {
       var deps = dep(fix.css, 'css');
-      var order = ['/foo.css', '../bar.css', '../baz.css', './crazy.css', '../bing.css', '../photo.png', '../photoB.png', './photoC.png', '../photoC.png', './haha.png', './whatever.jpg'];
+      var order = ['/foo.css', '../bar.css', '../baz.css', 'crazy.css', '../bing.css', '../photo.png', '../photoB.png', 'photoC.png', '../photoC.png', 'haha.png', 'whatever.jpg'];
       asserts(order, deps)
     });
 
@@ -73,7 +73,7 @@ describe('file-deps', function() {
 
     it('should remove paths differing only in same-dir prefix ./<foo> vs <foo>', function(){
       var deps = dep(fix.cssdupesSamedir, 'css')
-      assert.deepEqual(deps, ['./z.png'])
+      assert.deepEqual(deps, ['z.png'])
     })
   });
 
@@ -101,9 +101,9 @@ describe('file-deps', function() {
     })
 
     it('should rewrite css imports and urls', function() {
-      var order = ['/foo.css', '../bar.css', '../baz.css', './crazy.css', '../bing.css', '../photo.png', '../photo.png', '../photoB.png', './photoC.png', './photoC.png', '../photoC.png', './haha.png', './whatever.jpg'];
+      var order = ['/foo.css', '../bar.css', '../baz.css', 'crazy.css', '../bing.css', '../photo.png', '../photo.png', '../photoB.png', 'photoC.png', 'photoC.png', '../photoC.png', 'haha.png', 'whatever.jpg'];
       var str = dep(fix.css, 'css', function(req, ext) {
-        assert(req == path.normalize(order.shift()));
+        assert(req == order.shift());
         assert('css' == ext);
         return 'foo';
       });
