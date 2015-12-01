@@ -57,7 +57,7 @@ describe('file-deps', function() {
 
     it('should parse css', function() {
       var deps = dep(fix.css, 'css');
-      var order = ['/foo.css', '../bar.css', '../baz.css', 'crazy.css', '../bing.css', '../photo.png', '../photoB.png', 'photoC.png', '../photoC.png', 'haha.png', 'whatever.jpg'];
+      var order = ['../bar.css', '../baz.css', '../bing.css', '../photo.png', '../photoB.png', '../photoC.png', '/foo.css', 'crazy.css', 'haha.png', 'photoC.png', 'whatever.jpg'];
       asserts(order, deps)
     });
 
